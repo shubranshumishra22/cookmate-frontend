@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#3b82f6" />
       </head>
-      <body className="h-full bg-neutral-50 dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 antialiased transition-colors duration-300">
+      <body className="h-full bg-neutral-50 text-neutral-900 antialiased">
         {/* Skip to content link for accessibility */}
         <a 
           href="#main-content" 
@@ -83,7 +83,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </main>
             
             {/* Footer can be added here later */}
-            <footer className="bg-neutral-900 dark:bg-neutral-950 text-neutral-100 py-8 mt-auto">
+            <footer className="bg-neutral-900 text-neutral-100 py-8 mt-auto">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center space-y-2">
                   <p className="text-sm">

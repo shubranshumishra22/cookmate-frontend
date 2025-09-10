@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../lib/supabaseClient';
 import LanguageSelector from './LanguageSelector';
-import DarkModeToggle from './DarkModeToggle';
 
 export default function Nav() {
   const router = useRouter();
@@ -23,7 +22,7 @@ export default function Nav() {
   };
   
   return (
-    <nav className="bg-gradient-to-r from-white via-blue-50 to-white dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 border-b border-blue-100 dark:border-neutral-700 sticky top-0 z-40 backdrop-blur-sm shadow-sm">
+    <nav className="bg-gradient-to-r from-white via-blue-50 to-white border-b border-blue-100 sticky top-0 z-40 backdrop-blur-sm shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and primary navigation */}
@@ -39,17 +38,17 @@ export default function Nav() {
             </Link>
             
             {/* Desktop navigation */}
-            <div className="hidden lg:ml-8 lg:flex lg:space-x-8">
+            <div className="hidden md:ml-8 md:flex md:space-x-8">
               <Link 
                 href="/" 
-                className="text-slate-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-neutral-800 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200"
+                className="text-slate-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200"
               >
                 Home
               </Link>
               {email && (
                 <Link 
                   href="/profile" 
-                  className="text-slate-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-neutral-800 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200"
+                  className="text-slate-700 hover:text-blue-600 hover:bg-blue-50 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200"
                 >
                   Profile
                 </Link>
@@ -58,36 +57,29 @@ export default function Nav() {
           </div>
 
           {/* Right side navigation */}
-          <div className="flex items-center space-x-3">
-            {/* Dark mode toggle */}
-            <div className="hidden sm:block">
-              <DarkModeToggle />
-            </div>
-            
+          <div className="flex items-center space-x-4">
             {/* Language selector */}
-            <div className="hidden sm:block">
-              <LanguageSelector />
-            </div>
+            <LanguageSelector />
             
-            {/* User info and auth buttons - Desktop */}
-            <div className="hidden lg:flex lg:items-center lg:space-x-4">
+            {/* User info and auth buttons */}
+            <div className="hidden md:flex md:items-center md:space-x-4">
               {email ? (
                 <div className="flex items-center space-x-3">
                   <div className="flex items-center space-x-2">
                     <Link href="/profile" className="block">
-                      <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center hover:bg-primary-200 dark:hover:bg-primary-800 transition-colors cursor-pointer">
-                        <span className="text-primary-600 dark:text-primary-300 text-sm font-medium">
+                      <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center hover:bg-primary-200 transition-colors cursor-pointer">
+                        <span className="text-primary-600 text-sm font-medium">
                           {email.charAt(0).toUpperCase()}
                         </span>
                       </div>
                     </Link>
-                    <span className="text-sm text-neutral-700 dark:text-neutral-300 max-w-32 truncate">
+                    <span className="text-sm text-neutral-700 max-w-32 truncate">
                       {email}
                     </span>
                   </div>
                   <button
                     onClick={logout}
-                    className="inline-flex items-center px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md text-sm font-medium text-neutral-700 dark:text-neutral-300 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition-colors"
+                    className="inline-flex items-center px-3 py-2 border border-neutral-300 rounded-md text-sm font-medium text-neutral-700 bg-white hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
                   >
                     Sign Out
                   </button>
@@ -95,7 +87,7 @@ export default function Nav() {
               ) : (
                 <Link
                   href="/auth"
-                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800 transition-colors"
+                  className="inline-flex items-center px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors"
                 >
                   Sign In
                 </Link>
@@ -103,10 +95,10 @@ export default function Nav() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="lg:hidden">
+            <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-800"
+                className="inline-flex items-center justify-center p-2 rounded-md text-neutral-700 hover:text-primary-600 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                 aria-expanded="false"
               >
                 <span className="sr-only">Open main menu</span>
@@ -127,11 +119,11 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
+        <div className="md:hidden border-t border-neutral-200 bg-white">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
               href="/"
-              className="block px-3 py-2 rounded-md text-base font-medium text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+              className="block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-100"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
@@ -139,30 +131,20 @@ export default function Nav() {
             {email && (
               <Link
                 href="/profile"
-                className="block px-3 py-2 rounded-md text-base font-medium text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                className="block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-100"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Profile
               </Link>
             )}
-            {/* Mobile controls */}
-            <div className="pt-2 border-t border-neutral-200 dark:border-neutral-700">
-              <div className="flex items-center justify-between px-3 py-2">
-                <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">Theme & Language</span>
-                <div className="flex items-center space-x-3">
-                  <DarkModeToggle />
-                  <LanguageSelector />
-                </div>
-              </div>
-            </div>
           </div>
-          <div className="pt-4 pb-3 border-t border-neutral-200 dark:border-neutral-700">
+          <div className="pt-4 pb-3 border-t border-neutral-200">
             <div className="px-4 flex items-center">
               {email ? (
                 <div className="flex-shrink-0">
                   <Link href="/profile" onClick={() => setIsMenuOpen(false)}>
-                    <div className="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center hover:bg-primary-200 dark:hover:bg-primary-800 transition-colors cursor-pointer">
-                      <span className="text-primary-600 dark:text-primary-300 font-medium">
+                    <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center hover:bg-primary-200 transition-colors cursor-pointer">
+                      <span className="text-primary-600 font-medium">
                         {email.charAt(0).toUpperCase()}
                       </span>
                     </div>
@@ -170,10 +152,10 @@ export default function Nav() {
                 </div>
               ) : null}
               <div className="ml-3">
-                <div className="text-base font-medium text-neutral-800 dark:text-neutral-200">
+                <div className="text-base font-medium text-neutral-800">
                   {email || 'Guest User'}
                 </div>
-                <div className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                <div className="text-sm font-medium text-neutral-500">
                   {email || 'Not signed in'}
                 </div>
               </div>
@@ -182,14 +164,14 @@ export default function Nav() {
               {email ? (
                 <button
                   onClick={logout}
-                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-100"
                 >
                   Sign Out
                 </button>
               ) : (
                 <Link
                   href="/auth"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-neutral-700 hover:text-primary-600 hover:bg-neutral-100"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign In
