@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { supabase } from '../lib/supabaseClient';
-import { apiFetch } from '../lib/api';
-import { getUserLanguage, translateBatch, type LanguageCode } from '../lib/translation';
+import { supabase } from '@/lib/supabaseClient';
+import { apiFetch } from '@/lib/api';
+import { getUserLanguage, translateBatch, type LanguageCode } from '@/lib/translation';
 
 export default function Home() {
   const [me, setMe] = useState<any>(null);
@@ -544,7 +544,7 @@ export default function Home() {
                     placeholder={t('e.g., Home Cooking Services')}
                     value={svcForm.title} 
                     onChange={(e) => setSvcForm({ ...svcForm, title: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
                 
@@ -553,7 +553,7 @@ export default function Home() {
                   <select 
                     value={svcForm.cuisine} 
                     onChange={(e) => setSvcForm({ ...svcForm, cuisine: e.target.value as any })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900"
                   >
                     <option value="NORTH">{t('North Indian')}</option>
                     <option value="SOUTH">{t('South Indian')}</option>
@@ -568,7 +568,7 @@ export default function Home() {
                     placeholder={t('e.g., 500')}
                     value={svcForm.price} 
                     onChange={(e) => setSvcForm({ ...svcForm, price: Number(e.target.value) })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
                 
@@ -578,7 +578,7 @@ export default function Home() {
                     placeholder={t('e.g., Block A, B, C or Sector 1-5')}
                     value={svcForm.serviceArea} 
                     onChange={(e) => setSvcForm({ ...svcForm, serviceArea: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
                 
@@ -588,7 +588,7 @@ export default function Home() {
                     placeholder={t('e.g., 7:00 AM - 10:00 AM, 5:00 PM - 8:00 PM')}
                     value={svcForm.availableTiming} 
                     onChange={(e) => setSvcForm({ ...svcForm, availableTiming: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
               </div>
@@ -600,7 +600,7 @@ export default function Home() {
                   value={svcForm.description} 
                   onChange={(e) => setSvcForm({ ...svcForm, description: e.target.value })} 
                   rows={4}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-vertical"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-vertical text-slate-900 placeholder-slate-500"
                 />
               </div>
               
@@ -784,16 +784,25 @@ export default function Home() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">{t('Service Needed')}</label>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">{t('Service Needed')} *</label>
                   <select 
                     value={reqForm.needType} 
                     onChange={(e) => setReqForm({ ...reqForm, needType: e.target.value as any })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none bg-white cursor-pointer hover:border-slate-400 text-slate-900"
+                    style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                      backgroundPosition: 'right 0.5rem center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5em 1.5em'
+                    }}
                   >
-                    <option value="COOK">{t('Cook Only')}</option>
-                    <option value="MAID">{t('Maid Only')}</option>
-                    <option value="BOTH">{t('Both Cook & Maid')}</option>
+                    <option value="COOK" className="py-2">{t('Cook Only')}</option>
+                    <option value="MAID" className="py-2">{t('Maid Only')}</option>
+                    <option value="BOTH" className="py-2">{t('Both Cook & Maid')}</option>
                   </select>
+                  <div className="mt-1 text-xs text-slate-500">
+                    Choose the type of service you need
+                  </div>
                 </div>
                 
                 <div>
@@ -802,7 +811,7 @@ export default function Home() {
                     placeholder={t('e.g., 7:00 AM - 9:00 AM, 6:00 PM - 8:00 PM')}
                     value={reqForm.preferredTiming} 
                     onChange={(e) => setReqForm({ ...reqForm, preferredTiming: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
                 
@@ -813,7 +822,7 @@ export default function Home() {
                     placeholder={t('e.g., 5000 per month')}
                     value={reqForm.preferredPrice} 
                     onChange={(e) => setReqForm({ ...reqForm, preferredPrice: Number(e.target.value) })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
                 
@@ -823,7 +832,7 @@ export default function Home() {
                     placeholder={t('e.g., Block A, Tower 2, Sector 5')}
                     value={reqForm.block} 
                     onChange={(e) => setReqForm({ ...reqForm, block: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
                 
@@ -833,21 +842,30 @@ export default function Home() {
                     placeholder={t('e.g., 501, A-102, Unit 25')}
                     value={reqForm.flatNo} 
                     onChange={(e) => setReqForm({ ...reqForm, flatNo: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-900 placeholder-slate-500"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">{t('Urgency Level')}</label>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">{t('Urgency Level')} *</label>
                   <select 
                     value={reqForm.urgency} 
                     onChange={(e) => setReqForm({ ...reqForm, urgency: e.target.value as any })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none bg-white cursor-pointer hover:border-slate-400 text-slate-900"
+                    style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                      backgroundPosition: 'right 0.5rem center',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: '1.5em 1.5em'
+                    }}
                   >
-                    <option value="LOW">{t('Low Priority (Can wait 1-2 weeks)')}</option>
-                    <option value="MEDIUM">{t('Medium Priority (Need within a week)')}</option>
-                    <option value="HIGH">{t('High Priority (Need immediately)')}</option>
+                    <option value="LOW" className="py-2 text-green-700">{t('Low Priority (Can wait 1-2 weeks)')}</option>
+                    <option value="MEDIUM" className="py-2 text-amber-700">{t('Medium Priority (Need within a week)')}</option>
+                    <option value="HIGH" className="py-2 text-red-700">{t('High Priority (Need immediately)')}</option>
                   </select>
+                  <div className="mt-1 text-xs text-slate-500">
+                    How urgent is your service requirement?
+                  </div>
                 </div>
               </div>
               
@@ -858,7 +876,7 @@ export default function Home() {
                   value={reqForm.details} 
                   onChange={(e) => setReqForm({ ...reqForm, details: e.target.value })} 
                   rows={4}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-vertical"
+                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-vertical text-slate-900 placeholder-slate-500"
                 />
               </div>
               

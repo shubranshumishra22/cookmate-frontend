@@ -1,7 +1,8 @@
 import './globals.css';
 import { ReactNode } from 'react';
-import Nav from '../components/Nav';
-import AuthGuard from '../components/AuthGuard';
+import Nav from '@/components/Nav';
+import AuthGuard from '@/components/AuthGuard';
+import ConditionalLayout from '@/components/ConditionalLayout';
 
 export const metadata = {
   title: {
@@ -76,33 +77,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         
         <AuthGuard>
-          <div className="min-h-full flex flex-col">
-            <Nav />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            
-            {/* Footer can be added here later */}
-            <footer className="bg-neutral-900 text-neutral-100 py-8 mt-auto">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center space-y-2">
-                  <p className="text-sm">
-                    © 2025 CookMate. All rights reserved.
-                  </p>
-                  <p className="text-xs text-neutral-400">
-                    Created by <a 
-                      href="https://www.linkedin.com/in/shubranshu-shekhar-633192299/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="font-medium text-neutral-300 hover:text-blue-400 transition-colors duration-200 underline decoration-dotted hover:decoration-solid"
-                    >
-                      Shubranshu Shekhar
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </footer>
-          </div>
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
         </AuthGuard>
       </body>
     </html>

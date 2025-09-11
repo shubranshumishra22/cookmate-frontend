@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '../lib/supabaseClient';
-import LanguageSelector from './LanguageSelector';
+import { supabase } from '@/lib/supabaseClient';
+import LanguageSelector from '@/components/LanguageSelector';
 
 export default function Nav() {
   const router = useRouter();

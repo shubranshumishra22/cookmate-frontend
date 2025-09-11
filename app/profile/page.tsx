@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { supabase } from '../../lib/supabaseClient';
-import { apiFetch } from '../../lib/api';
+import { supabase } from '@/lib/supabaseClient';
+import { apiFetch } from '@/lib/api';
 
 export default function ProfilePage() {
   const [me, setMe] = useState<any>(null);
@@ -156,49 +156,49 @@ export default function ProfilePage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
               <input 
                 placeholder="Enter your full name" 
                 value={profile.name} 
                 onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
               <input 
                 placeholder="Enter your phone number" 
                 value={profile.phone} 
                 onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Block/Building</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Block/Building</label>
               <input 
                 placeholder="Enter your block or building" 
                 value={profile.block} 
                 onChange={(e) => setProfile({ ...profile, block: e.target.value })}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Flat Number</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Flat Number</label>
               <input 
                 placeholder="Enter your flat number" 
                 value={profile.flatNo} 
                 onChange={(e) => setProfile({ ...profile, flatNo: e.target.value })}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-500"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Age</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Age</label>
               <input 
                 type="number" 
                 placeholder="Enter your age" 
                 value={profile.age} 
                 onChange={(e) => setProfile({ ...profile, age: Number(e.target.value) })}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-500"
               />
             </div>
             <div className="md:col-span-2 mt-4">

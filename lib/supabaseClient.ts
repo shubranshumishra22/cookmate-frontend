@@ -15,6 +15,24 @@ if (!KEY || KEY === 'dev-key') {
 
 console.log('Supabase URL configured:', URL);
 
+// Get the current origin for redirect URLs
+const getRedirectURL = () => {
+  if (typeof window !== 'undefined') {
+    return `${window.location.origin}/auth/callback`;
+  }
+  // Fallback for server-side
+  return process.env.NODE_ENV === 'production' 
+    ? 'https://cookmate-flame.vercel.app/auth/callback'
+    : 'http://localhost:3000/auth/callback';
+};
+
 export const supabase = createClient(URL, KEY, {
-  auth: { autoRefreshToken: true, persistSession: true, detectSessionInUrl: true },
+  auth: { 
+    autoRefreshToken: true, 
+    persistSession: true, 
+    detectSessionInUrl: true,
+    flowType: 'pkce' // More secure auth flow
+  },
 });
+
+export { getRedirectURL };
